@@ -10,17 +10,23 @@ Back-end
 - pandas
 
 ## How to run
-# macOS
+macOS
 ```
 At root:
 
 cd frontend
 yarn start or npm run start
 
-and cd ../ go back to root then
+#and cd ../ go back to root then
 
 cd backend
-//Using virtual env (python)
+
+#Using virtual env (python)
+
 source venv/bin/activate
 FLASK_APP=run.py flask run
+```
+Window
+```
+will post soon
 ```
