@@ -4,6 +4,7 @@ This is my first full-stack web application
 ## Dependencies
 > For python
 - python3+
+- virtualenv
 - flask
 - scipy
 - numpy
