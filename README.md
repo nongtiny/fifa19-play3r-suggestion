@@ -2,7 +2,7 @@
 This is my first full-stack web application
 
 ## Dependencies
-Back-end
+> For python
 - python3+
 - flask
 - scipy
@@ -17,11 +17,11 @@ At root:
 cd frontend
 yarn start or npm run start
 
-#and cd ../ go back to root then
+# cd ../ go back to root then
 
 cd backend
 
-#Using virtual env (python)
+# Using virtual env (python)
 
 source venv/bin/activate
 FLASK_APP=run.py flask run
