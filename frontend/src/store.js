@@ -4,7 +4,8 @@ Vue.use(Vuex)
 const state = {
   properties_input: [],
   positions_input: [],
-  result_data: []
+  result_data: [],
+  compare_data: []
 }
 
 const mutations = {

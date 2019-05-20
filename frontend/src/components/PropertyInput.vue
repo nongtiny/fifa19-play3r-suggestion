@@ -1,5 +1,6 @@
 <template>
     <v-app>
+    <div v-if="load">
     <v-layout style="margin-top: 30vh;" align-center column>
         <h1 class="display-4">Property</h1>
         <h1 style="margin-top:2rem; margin-bottom:2rem;" class="headline">Add player property you are looking for</h1>
@@ -49,15 +50,33 @@
             <v-btn @click="submit" class="butt" style="margin-top:2rem" color="primary">Submit</v-btn>
           </router-link>
         </v-layout>
-        {{$store.state.positions_input}}
-        {{dada}}
     </v-container>
-    
+    </div>
+    <div v-else>
+    <v-layout style="margin-top: 30vh;" align-center column>
+      <v-responsive color="primary" dark>
+            <v-container fill-height>
+            <v-layout align-center>
+                <v-flex text-xs-center>
+                <h3 class="display-3">
+                Calculating
+                <v-progress-circular
+                indeterminate
+                color="black"
+                ></v-progress-circular>
+                </h3>
+                </v-flex>
+            </v-layout>
+            </v-container>
+      </v-responsive>
+    </v-layout>
+    </div>
     </v-app>
 </template>
 <script>
 import { mapActions } from 'vuex'
 import { properties } from '../enum'
+
 
 export default {
   data() {
@@ -65,7 +84,7 @@ export default {
       proper: properties,
       min: 0,
       max: 100,
-      dada: {},
+      load: true,
     }
   },
   methods: {
@@ -74,28 +93,8 @@ export default {
       'deleteProp'
     ]),
     submit() {
-      const simiData = this.$store.getters.posNotNull.concat(this.$store.getters.propNotNull)
-      fetch(`http://localhost:5000/api/data`,{
-          method: 'POST',
-          mode: 'cors', 
-          cache: 'no-cache', 
-          credentials: 'same-origin', 
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(simiData), // body data type must match "Content-Type" header
-        })
-        .then(response => response.text()).then(
-          text => {
-            let data = JSON.parse(text)
-            console.log(data)
-            this.$store.state.result_data = data.tdata
-          }
-        )
-        .catch(function(err) {
-          console.log('Fetch Error :-S', err);
-        });
-    },
+      this.load = false;
+    }
   },
 }
 </script>
